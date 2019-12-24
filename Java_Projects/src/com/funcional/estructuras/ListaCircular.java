@@ -5,8 +5,6 @@
  */
 package com.funcional.estructuras;
 
-import java.util.Scanner;
-
 /**
  *
  * @author Erick Díaz Estructura de Datos: Lista circular.
@@ -14,140 +12,109 @@ import java.util.Scanner;
 public class ListaCircular {
 
     private Nodo top = null;
-    private Nodo last = null;
+    private Nodo ultimo = null;
+    int longitud = 0;
 
-    private class Nodo {
-
-        int number;
-        Nodo next;
-
-        public Nodo(int number) {
-            this.number = number;
-            next = null;
-        }
-
-    }
-
-    void setFirst(int bit) {
-        Nodo temp = new Nodo(bit);
+    final void insercionInicio(int numero) {
+        Nodo temp = new Nodo(numero);
         if (top == null) {
-            temp.next = temp;
-            last = temp;
+            ultimo = temp;
         } else {
-            temp.next = top;
-            last.next = temp;
+            temp.siguiente = top;
+            ultimo.siguiente = temp;
         }
         top = temp;
+        longitud++;
     }
 
-    void setLast(int bit) {
-        Nodo temp = new Nodo(bit);
+    final void insercionFinal(int numero) {
+        Nodo temp = new Nodo(numero);
         if (top == null) {
-            temp.next = temp;
             top = temp;
         } else {
-            last.next = temp;
-            temp.next = top;
+            temp.siguiente = top;
+            ultimo.siguiente = temp;
         }
-        last = temp;
+        ultimo = temp;
+        longitud++;
     }
 
-    void setBefore(int number, int bite) {
+    final void insercionDespues(int numero, int buscar) {
         Nodo temp = top;
-        while ((temp.next.number != number) && (temp.next != top)) {
-            temp = temp.next;
+        while ((temp.numero != buscar) && (temp.siguiente != top)) {
+            temp = temp.siguiente;
         }
-        if (temp.next.number == number) {
-            Nodo temp1 = new Nodo(bite);
-            temp1.next = temp.next;
-            temp.next = temp1;
+        if (temp.numero == buscar) {
+            Nodo temp1 = new Nodo(numero);
+            temp1.siguiente = temp.siguiente;
+            temp.siguiente = temp1;
+            longitud++;
         } else {
-            System.out.println(number + " doesn't exist.");
-        }
-    }
-
-    void setAfter(int number, int bite) {
-        Nodo temp = top;
-        while ((temp.number != number) && (temp.next != top)) {
-            temp = temp.next;
-        }
-        if (temp.number == number) {
-            Nodo temp1 = new Nodo(bite);
-            temp1.next = temp.next;
-            temp.next = temp1;
-        } else {
-            System.out.println(number + " doesn't exist.");
+            System.out.println("El número " + buscar + " no existe.");
         }
     }
 
-    void deleteNode(int number) {
+    final void insercionAntes(int numero, int buscar) {
         Nodo temp = top;
-        Nodo previous = top;
-        if (temp.number == number) {
-            do {
-                previous = previous.next;
-            } while (previous.next != top);
-            top = top.next;
-            previous.next = top;
+        while ((temp.siguiente.numero != buscar) && (temp.siguiente != top)) {
+            temp = temp.siguiente;
+        }
+        if (temp.siguiente.numero == buscar) {
+            Nodo temp1 = new Nodo(numero);
+            temp1.siguiente = temp.siguiente;
+            temp.siguiente = temp1;
+            longitud++;
         } else {
-            do {
-                previous = temp;
-                temp = temp.next;
-            } while ((temp.number != number) && (temp != top));
-            if (temp != top) {
-                previous.next = temp.next;
+            System.out.println("El número " + buscar + " no existe.");
+        }
+    }
+
+    final void modificarNodo(int numero, int buscar) {
+        Nodo temp = top;
+        while ((temp.numero != buscar) && (temp.siguiente != top)) {
+            temp = temp.siguiente;
+        }
+        if (temp.numero == buscar) {
+            temp.numero = numero;
+        } else {
+            System.out.println("El número " + buscar + " no existe.");
+        }
+    }
+
+    final void eliminarNodo(int numero) {
+        Nodo temp = top;
+        Nodo temp1 = top;
+        while ((temp.numero != numero) && (temp.siguiente != top)) {
+            temp1 = temp;
+            temp = temp.siguiente;
+        }
+        if (temp.numero == numero) {
+            if (temp == top) {
+                top = top.siguiente;
+                ultimo.siguiente = top;
             } else {
-                System.out.println(number + " doesn't exist");
+                temp1.siguiente = temp.siguiente;
             }
-        }
-    }
-
-    void modify(int newNumber, int oldNumber) {
-        Nodo temp = top;
-        while ((temp.number != oldNumber) && (temp.next != top)) {
-            temp = temp.next;
-        }
-        if (temp.number == oldNumber) {
-            temp.number = newNumber;
+            longitud--;
         } else {
-            System.out.println(oldNumber + " doesn't exist.");
+            System.out.println("El número " + numero + " no existe.");
         }
     }
 
-    void ruleta() {
-        Scanner leer = new Scanner(System.in);
-        int exit = 0;
+    final void impresionLista() {
         Nodo temp = top;
+        int contador = 0;
+        System.out.println();
         do {
-            System.out.print("Ingrese el número de vueltas ");
-            exit = leer.nextInt();
-            for (int i = 0; i < exit; i++) {
-                temp = temp.next;
+            System.out.print(temp.numero + " ");
+            if (contador == 10) {
+                System.out.println();
+                contador = 0;
             }
-            System.out.println("The number is " + temp.number);
-        } while (exit != -1);
-    }
-
-    void putOnScreen() {
-        Nodo temp = top;
-        do {
-            System.out.println(temp.number);
-            temp = temp.next;
+            contador++;
+            temp = temp.siguiente;
         } while (temp != top);
-    }
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        // TODO code application logic here
-        ListaCircular lc = new ListaCircular();
-        for (int i = 1; i < 6; i++) {
-            lc.setLast(i * 5);
-        }
-        lc.putOnScreen();
-        System.out.println("");
-        // Se pueden utilizar todos los métodos de lista circular desarrollados.
+        System.out.println();
     }
 
 }
