@@ -13,9 +13,9 @@ public class ListaCircular {
 
     private Nodo top = null;
     private Nodo ultimo = null;
-    int longitud = 0;
+    private int longitud = 0;
 
-    final void insercionInicio(int numero) {
+    public final void insercionInicio(int numero) {
         Nodo temp = new Nodo(numero);
         if (top == null) {
             ultimo = temp;
@@ -27,7 +27,7 @@ public class ListaCircular {
         longitud++;
     }
 
-    final void insercionFinal(int numero) {
+    public final void insercionFinal(int numero) {
         Nodo temp = new Nodo(numero);
         if (top == null) {
             top = temp;
@@ -39,7 +39,7 @@ public class ListaCircular {
         longitud++;
     }
 
-    final void insercionDespues(int numero, int buscar) {
+    public final void insercionDespues(int numero, int buscar) {
         Nodo temp = top;
         while ((temp.numero != buscar) && (temp.siguiente != top)) {
             temp = temp.siguiente;
@@ -54,7 +54,7 @@ public class ListaCircular {
         }
     }
 
-    final void insercionAntes(int numero, int buscar) {
+    public final void insercionAntes(int numero, int buscar) {
         Nodo temp = top;
         while ((temp.siguiente.numero != buscar) && (temp.siguiente != top)) {
             temp = temp.siguiente;
@@ -69,7 +69,7 @@ public class ListaCircular {
         }
     }
 
-    final void modificarNodo(int numero, int buscar) {
+    public final void modificarNodo(int numero, int buscar) {
         Nodo temp = top;
         while ((temp.numero != buscar) && (temp.siguiente != top)) {
             temp = temp.siguiente;
@@ -81,7 +81,7 @@ public class ListaCircular {
         }
     }
 
-    final void eliminarNodo(int numero) {
+    public final void eliminarNodo(int numero) {
         Nodo temp = top;
         Nodo temp1 = top;
         while ((temp.numero != numero) && (temp.siguiente != top)) {
@@ -101,20 +101,32 @@ public class ListaCircular {
         }
     }
 
-    final void impresionLista() {
+    public final void impresionLista() {
         Nodo temp = top;
         int contador = 0;
-        System.out.println();
         do {
             System.out.print(temp.numero + " ");
             if (contador == 10) {
-                System.out.println();
+                System.out.println("");
                 contador = 0;
             }
             contador++;
             temp = temp.siguiente;
         } while (temp != top);
-        System.out.println();
+    }
+
+    public int length() {
+        return longitud;
+    }
+
+    public int[] vector() {
+        int[] vector = new int[length()];
+        Nodo temp = top;
+        for (int i = 0; i < length(); i++) {
+            vector[i] = temp.numero;
+            temp = temp.siguiente;
+        }
+        return vector;
     }
 
 }

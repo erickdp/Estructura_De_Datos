@@ -14,12 +14,12 @@ public class Arreglo {
     public int[] numeros;
     private int contador = 0;
 
-    final void insercion(int numero) {
+    public final void insercion(int numero) {
         numeros[contador] = numero;
         contador++;
     }
 
-    final void eliminar(int buscar) {
+    public final void eliminar(int buscar) {
         boolean bandera = false;
         int posicion = 0;
         for (int i = 0; i < numeros.length; i++) {
@@ -38,7 +38,7 @@ public class Arreglo {
         }
     }
 
-    final void insercionDespues(int numero, int buscar) {
+    public final void insercionDespues(int numero, int buscar) {
         int posicion = 0;
         boolean bandera = false;
         for (int i = 0; i < numeros.length; i++) {
@@ -59,7 +59,7 @@ public class Arreglo {
         }
     }
 
-    final void insercionAntes(int numero, int buscar) {
+    public final void insercionAntes(int numero, int buscar) {
         int posicion = 0;
         boolean bandera = false;
         for (int i = 0; i < numeros.length; i++) {
@@ -82,7 +82,7 @@ public class Arreglo {
         }
     }
 
-    final void modificar(int numero, int buscar) {
+    public final void modificar(int numero, int buscar) {
         boolean bandera = false;
         for (int i = 0; i < numeros.length; i++) {
             if (numeros[i] == buscar) {
@@ -106,14 +106,14 @@ public class Arreglo {
         contador++;
     }
 
-    final void imprimirArreglo() {
-        int contador = 0;
+    public final void imprimirArreglo() {
+        int co = 0;
         for (int numero : numeros) {
             System.out.print(numero + " ");
-            contador++;
-            if (contador == 20) {
+            co++;
+            if (co == 20) {
                 System.out.println();
-                contador = 0;
+                co = 0;
             }
         }
     }

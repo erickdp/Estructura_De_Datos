@@ -13,8 +13,9 @@ public class Cola {
 
     private Nodo cola = null;
     private Nodo ultimo = null;
+    private int contador = 0;
 
-    final void insercion(int numero) {
+    public final void insercion(int numero) {
         Nodo temp = new Nodo(numero);
         if (cola == null) {
             cola = temp;
@@ -22,9 +23,10 @@ public class Cola {
             ultimo.siguiente = temp;
         }
         ultimo = temp;
+        contador++;
     }
 
-    final void insercionAntes(int numero, int buscar) {
+    public final void insercionAntes(int numero, int buscar) {
         Nodo colat = null;
         Nodo ultimot = null;
         Nodo temp = cola;
@@ -43,6 +45,7 @@ public class Cola {
             Nodo temp1 = new Nodo(numero);
             temp1.siguiente = temp;
             temp = temp1;
+            contador++;
         } else {
             System.out.println("El número " + buscar + " no existe.");
         }
@@ -54,7 +57,7 @@ public class Cola {
         }
     }
 
-    final void insercionDespues(int numero, int buscar) {
+    public final void insercionDespues(int numero, int buscar) {
         Nodo colat = null;
         Nodo ultimot = null;
         Nodo temp = cola;
@@ -84,6 +87,7 @@ public class Cola {
             ultimot = temp2;
             ultimot.siguiente = temp;
             cola = colat;
+            contador++;
         } else {
             System.out.println("El número " + buscar + " no existe.");
             ultimot.siguiente = temp;
@@ -91,7 +95,7 @@ public class Cola {
         }
     }
 
-    final void eliminarNodo(int numero) {
+    public final void eliminarNodo(int numero) {
         Nodo temp = cola;
         Nodo colat = null;
         Nodo ultimot = null;
@@ -113,6 +117,7 @@ public class Cola {
                 ultimot.siguiente = temp;
                 cola = colat;
             }
+            contador--;
         } else {
             System.out.println("El número " + numero + " no existe.");
             ultimot.siguiente = temp;
@@ -120,7 +125,7 @@ public class Cola {
         }
     }
 
-    final void modificarNodo(int numero, int buscar) {
+    public final void modificarNodo(int numero, int buscar) {
         Nodo colat = null;
         Nodo ultimot = null;
         Nodo temp = cola;
@@ -148,18 +153,32 @@ public class Cola {
         }
     }
 
-    final void imprimir() {
+    public final void imprimir() {
         Nodo temp = cola;
-        int contador = 0;
+        int co = 0;
         while (temp != null) {
             System.out.print(temp.numero + " ");
             temp = temp.siguiente;
-            contador++;
-            if (contador == 15) {
-                System.out.println();
-                contador = 0;
+            co++;
+            if (co == 15) {
+                System.out.println("");
+                co = 0;
             }
         }
+    }
+
+    public final int length() {
+        return contador;
+    }
+
+    public final int[] vector() {
+        int vector[] = new int[length()];
+        Nodo temp = cola;
+        for (int i = 0; i < length(); i++) {
+            vector[i] = temp.numero;
+            temp = temp.siguiente;
+        }
+        return vector;
     }
 
 }

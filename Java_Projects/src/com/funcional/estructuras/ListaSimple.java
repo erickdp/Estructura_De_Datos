@@ -13,14 +13,16 @@ public class ListaSimple {
 
     private Nodo top = null;
     private Nodo ultimo = null;
+    private int contador = 0;
 
-    final void insercionInicio(int numero) {
+    public final void insercionInicio(int numero) {
         Nodo temp = new Nodo(numero);
         temp.siguiente = top;
         top = temp;
+        contador++;
     }
 
-    final void insercionFinal(int numero) {
+    public final void insercionFinal(int numero) {
         Nodo temp = new Nodo(numero);
         if (top == null) {
             top = temp;
@@ -28,9 +30,10 @@ public class ListaSimple {
             ultimo.siguiente = temp;
         }
         ultimo = temp;
+        contador++;
     }
 
-    final void insercionDespues(int numero, int buscar) {
+    public final void insercionDespues(int numero, int buscar) {
         Nodo temp = top;
         while ((temp.numero != buscar) && (temp.siguiente != null)) {
             temp = temp.siguiente;
@@ -39,12 +42,13 @@ public class ListaSimple {
             Nodo temp1 = new Nodo(numero);
             temp1.siguiente = temp.siguiente;
             temp.siguiente = temp1;
+            contador++;
         } else {
             System.out.println("El Nodo " + buscar + " no exsite.");
         }
     }
 
-    final void insercionAntes(int numero, int buscar) {
+    public final void insercionAntes(int numero, int buscar) {
         Nodo temp = top;
         Nodo nodoFinal = ultimo;
         if (temp.numero == buscar) {
@@ -60,17 +64,19 @@ public class ListaSimple {
                 Nodo temp1 = new Nodo(numero);
                 temp1.siguiente = temp;
                 nodoFinal.siguiente = temp1;
+                contador++;
             } else {
                 System.out.println("El número " + buscar + " no existe.");
             }
         }
     }
 
-    final void eliminarNodo(int buscar) {
+    public final void eliminarNodo(int buscar) {
         Nodo temp = top;
         Nodo ultimoNodo = ultimo;
         if (temp.numero == buscar) {
             top = top.siguiente;
+            contador--;
         } else {
             while ((temp.numero != buscar) && (temp.siguiente != null)) {
                 ultimoNodo = temp;
@@ -78,13 +84,14 @@ public class ListaSimple {
             }
             if (temp.numero == buscar) {
                 ultimoNodo.siguiente = temp.siguiente;
+                contador--;
             } else {
                 System.out.println("El número " + buscar + " no existe.");
             }
         }
     }
 
-    final void modificarNodo(int numero, int buscar) {
+    public final void modificarNodo(int numero, int buscar) {
         Nodo temp = top;
         while ((temp.numero != buscar) && (temp.siguiente != null)) {
             temp = temp.siguiente;
@@ -96,17 +103,31 @@ public class ListaSimple {
         }
     }
 
-    final void imprimirlista() {
+    public final void imprimirlista() {
         Nodo temp = top;
-        int contador = 0;
+        int co = 0;
         while (temp != null) {
             System.out.print(temp.numero + " ");
-            contador++;
-            if (contador == 20) {
-                System.out.println();
-                contador = 0;
+            co++;
+            if (co == 20) {
+                System.out.println("");
+                co = 0;
             }
             temp = temp.siguiente;
         }
+    }
+
+    public final int length() {
+        return contador;
+    }
+
+    public final int[] vector() {
+        int vector[] = new int[length()];
+        Nodo temp = top;
+        for (int i = 0; i < length(); i++) {
+            vector[i] = temp.numero;
+            temp = temp.siguiente;
+        }
+        return vector;
     }
 }
