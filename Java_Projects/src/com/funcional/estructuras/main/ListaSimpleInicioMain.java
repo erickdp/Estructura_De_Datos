@@ -25,6 +25,7 @@ public class ListaSimpleInicioMain {
     final static void menuListaSimple(int[] vector, boolean inicio) {
         boolean door = false;
         if (inicio) {
+            ls = new ListaSimple();
             transformacion(vector);
             System.out.println("Atención: \nTransformación con éxito, puede volver a realizar "
                     + " una nueva inserción o utilizar las opciones alternas de la estructura.");
@@ -141,6 +142,21 @@ public class ListaSimpleInicioMain {
                                     ColaMain.menuListaSimple(ls.vector(), true);
                                     break;
                                 case 6:
+                                    System.out.println("1. Inserción Inicio");
+                                    System.out.println("2. Inserción Final");
+                                    System.out.print("Digite: ");
+                                    opcion3 = Funcional.leer.nextInt();
+                                    switch (opcion3) {
+                                        case 1:
+                                            ListaDBEMain.menuListaDME(ls.vector(), true);
+                                            break;
+                                        case 2:
+                                            ListaDBEMainFinal.menuListaDME(ls.vector(), true);
+                                            break;
+                                        default:
+                                            System.out.println("Opción incorrecta");
+                                            break;
+                                    }
                                     break;
                                 default:
                                     System.out.println("Opción Incorrecta, vuelva a intentar.");

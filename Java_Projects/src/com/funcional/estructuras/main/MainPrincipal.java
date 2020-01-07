@@ -84,8 +84,10 @@ public class MainPrincipal {
                     opcion3 = Funcional.leer.nextInt();
                     switch (opcion3) {
                         case 1:
+                            ListaDBEMain.menuListaDME(null, false);
                             break;
                         case 2:
+                            ListaDBEMainFinal.menuListaDME(null, false);
                             break;
                         default:
                             System.out.println("Opción incorrecta");

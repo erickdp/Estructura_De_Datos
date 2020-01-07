@@ -13,18 +13,19 @@ import com.funcional.estructuras.Cola;
  * @author Erick Díaz
  */
 public class ColaMain {
-    
+
     private static Cola co = new Cola();
-    
+
     private static void transformacion(int[] vector) {
         for (int i : vector) {
             co.insercion(i);
         }
     }
-    
+
     final static void menuListaSimple(int[] vector, boolean inicio) {
         boolean door = false;
         if (inicio) {
+            co = new Cola();
             transformacion(vector);
             System.out.println("Atención: \nTransformación con éxito, puede volver a realizar "
                     + " una nueva inserción o utilizar las opciones alternas de la estructura.");
@@ -130,6 +131,7 @@ public class ColaMain {
                                             System.out.println("Opción incorrecta");
                                             break;
                                     }
+                                    break;
                                 case 3:
                                     System.out.println("1. Inserción Inicio");
                                     System.out.println("2. Inserción Final");
@@ -151,9 +153,25 @@ public class ColaMain {
                                     PilaInicioMain.menuListaSimple(co.vector(), true);
                                     break;
                                 case 5:
+                                    System.out.println("1. Inserción Inicio");
+                                    System.out.println("2. Inserción Final");
+                                    System.out.print("Digite: ");
+                                    opcion3 = Funcional.leer.nextInt();
+                                    switch (opcion3) {
+                                        case 1:
+                                            ListaDBEMain.menuListaDME(co.vector(), true);
+                                            break;
+                                        case 2:
+                                            ListaDBEMainFinal.menuListaDME(co.vector(), true);
+                                            break;
+                                        default:
+                                            System.out.println("Opción incorrecta");
+                                            break;
+                                    }
                                     break;
                                 default:
                                     System.out.println("Opción Incorrecta, vuelva a intentar.");
+                                    break;
                             }
                         } while (opcion2 != 6);
                     } else {
@@ -168,5 +186,5 @@ public class ColaMain {
             }
         } while (opcion != 7);
     }
-    
+
 }
