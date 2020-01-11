@@ -18,6 +18,12 @@ public class ArregloMain {
 
     static final void menuArreglo(int[] vector, boolean bandera) {
         boolean door = false;
+        int opcion = 0;
+        int numeros;
+        int buscar;
+        int numero;
+        int multiplo;
+        System.out.println("- - - - - - - - - Arreglos - - - - - - - - -");
         if (bandera) {
             door = true;
             ar = new Arreglo();
@@ -26,13 +32,23 @@ public class ArregloMain {
                     + " una nueva inserción o utilizar las opciones alternas de la estructura.");
             ar.imprimirArreglo();
             System.out.println("");
+        } else {
+            do {
+                System.out.print("Ingrese la cantidad de números que conformarán al"
+                        + " arreglo (debe ser mayor a 1): ");
+                numeros = Funcional.leer.nextInt();
+            } while (numeros < 1);
+            do {
+                System.out.print("Ingrese el múltiplo que conformará el arreglo: ");
+                multiplo = Funcional.leer.nextInt();
+            } while (multiplo < 0);
+            ar.numeros = new int[numeros];
+            for (int i = 1; i < numeros + 1; i++) {
+                ar.insercion(i * multiplo);
+            }
+            door = true;
+            ar.imprimirArreglo();
         }
-        System.out.print("- - - - - - - - - Arreglos - - - - - - - - -");
-        int opcion = 0;
-        int numeros;
-        int buscar;
-        int numero;
-        int multiplo;
         do {
             System.out.println("\n1. Inserción");
             System.out.println("2. Inserción después de ");
@@ -44,6 +60,7 @@ public class ArregloMain {
             opcion = Funcional.leer.nextInt();
             switch (opcion) {
                 case 1:
+                    ar = new Arreglo();
                     do {
                         System.out.print("Ingrese la cantidad de números que conformarán al"
                                 + " arreglo (debe ser mayor a 1): ");
@@ -112,6 +129,7 @@ public class ArregloMain {
                                     System.out.println("2. Inserción Final");
                                     System.out.print("Digite: ");
                                     opcion3 = Funcional.leer.nextInt();
+                                    System.out.println("La Estructura Arreglo está vacia.");
                                     switch (opcion3) {
                                         case 1:
                                             ListaSimpleInicioMain.menuListaSimple(ar.numeros, true);
@@ -129,6 +147,7 @@ public class ArregloMain {
                                     System.out.println("2. Inserción Final");
                                     System.out.print("Digite: ");
                                     opcion3 = Funcional.leer.nextInt();
+                                    System.out.println("La Estructura Arreglo está vacia.");
                                     switch (opcion3) {
                                         case 1:
                                             ListaCircularInicioMain.menuListaCircular(ar.numeros, true);
@@ -142,9 +161,11 @@ public class ArregloMain {
                                     }
                                     break;
                                 case 3:
+                                    System.out.println("La Estructura Arreglo está vacia.");
                                     PilaInicioMain.menuListaSimple(ar.numeros, true);
                                     break;
                                 case 4:
+                                    System.out.println("La Estructura Arreglo está vacia.");
                                     ColaMain.menuListaSimple(ar.numeros, true);
                                     break;
                                 case 5:
@@ -152,6 +173,7 @@ public class ArregloMain {
                                     System.out.println("2. Inserción Final");
                                     System.out.print("Digite: ");
                                     opcion3 = Funcional.leer.nextInt();
+                                    System.out.println("La Estructura Arreglo está vacia.");
                                     switch (opcion3) {
                                         case 1:
                                             ListaDBEMain.menuListaDME(ar.numeros, true);

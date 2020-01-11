@@ -21,34 +21,6 @@ public class Pila {
         contador++;
     }
 
-    public final void insercionAntes(int numero, int buscar) {
-        Nodo temp = pila;
-        Nodo pilat = null;
-        while ((temp.numero != buscar) && (temp.siguiente != null)) {
-            Nodo temp1 = new Nodo(temp.numero);
-            temp1.siguiente = pilat;
-            pilat = temp1;
-            pila = pila.siguiente;
-            temp = temp.siguiente;
-        }
-        if (temp.numero == buscar) {
-            Nodo temp2 = new Nodo(numero);
-            temp2.siguiente = temp;
-            temp = temp2;
-            pila = temp;
-            contador++;
-        } else {
-            System.out.println("El número " + buscar + " no existe.");
-        }
-        while (pilat != null) {
-            Nodo temp1 = new Nodo(pilat.numero);
-            temp1.siguiente = temp;
-            temp = temp1;
-            pila = temp;
-            pilat = pilat.siguiente;
-        }
-    }
-
     public final void insercionDespues(int numero, int buscar) {
         Nodo temp = pila;
         Nodo pilat = null;
@@ -155,7 +127,9 @@ public class Pila {
         for (int i = 0; i < length(); i++) {
             vector[i] = temp.numero;
             temp = temp.siguiente;
+            pila = pila.siguiente;
         }
+        System.out.println("La Estructura Pila está vacía.");
         return vector;
     }
 

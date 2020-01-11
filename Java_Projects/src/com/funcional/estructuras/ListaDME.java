@@ -74,7 +74,9 @@ public class ListaDME {
         for (int i = 0; i < length(); i++) {
             vector[i] = temp.numero;
             temp = temp.siguiente;
+            top = top.siguiente;
         }
+        System.out.println("La Estructura Lista Doblemente Enlazada está vacía.");
         return vector;
     }
 

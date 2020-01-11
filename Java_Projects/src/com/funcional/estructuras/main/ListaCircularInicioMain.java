@@ -24,6 +24,12 @@ public class ListaCircularInicioMain {
 
     final static void menuListaCircular(int[] vector, boolean inicio) {
         boolean door = false;
+        System.out.println("- - - - - - - - - LISTA CIRCULAR - - - - - - - - -");
+        int opcion = 0;
+        int numeros;
+        int buscar;
+        int numero;
+        int multiplo;
         if (inicio) {
             lc = new ListaCircular();
             transformacion(vector);
@@ -32,13 +38,22 @@ public class ListaCircularInicioMain {
             lc.impresionLista();
             door = true;
             System.out.println("");
+        } else {
+            do {
+                System.out.print("Ingrese la cantidad de números que conformarán la"
+                        + " lista circular (debe ser mayor a 1): ");
+                numeros = Funcional.leer.nextInt();
+            } while (numeros < 1);
+            do {
+                System.out.print("Ingrese el múltiplo que conformará la lista: ");
+                multiplo = Funcional.leer.nextInt();
+            } while (multiplo < 0);
+            for (int i = 1; i < numeros + 1; i++) {
+                lc.insercionInicio(i * multiplo);
+            }
+            lc.impresionLista();
+            door = true;
         }
-        System.out.print("- - - - - - - - - LISTA CIRCULAR - - - - - - - - -");
-        int opcion = 0;
-        int numeros;
-        int buscar;
-        int numero;
-        int multiplo;
         do {
             System.out.println("\n1. Inserción al Inicio");
             System.out.println("2. Inserción después de ");
@@ -50,6 +65,7 @@ public class ListaCircularInicioMain {
             opcion = Funcional.leer.nextInt();
             switch (opcion) {
                 case 1:
+                    lc = new ListaCircular();
                     do {
                         System.out.print("Ingrese la cantidad de números que conformarán la"
                                 + " lista circular (debe ser mayor a 1): ");

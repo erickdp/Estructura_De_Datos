@@ -127,7 +127,9 @@ public class ListaSimple {
         for (int i = 0; i < length(); i++) {
             vector[i] = temp.numero;
             temp = temp.siguiente;
+            top = top.siguiente;
         }
+        System.out.println("La Estructura Lista Simple está vacía.");
         return vector;
     }
 }

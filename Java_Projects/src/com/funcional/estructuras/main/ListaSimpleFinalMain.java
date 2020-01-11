@@ -13,17 +13,23 @@ import com.funcional.estructuras.ListaSimple;
  * @author Erick Díaz
  */
 public class ListaSimpleFinalMain {
-    
+
     private static ListaSimple ls = new ListaSimple();
-    
+
     private static void transformacion(int[] vector) {
         for (int i : vector) {
             ls.insercionFinal(i);
         }
     }
-    
+
     final static void menuListaSimple(int[] vector, boolean ultimo) {
         boolean door = false;
+        System.out.println("- - - - - - - - - LISTA SIMPLE - - - - - - - - -");
+        int opcion = 0;
+        int numeros;
+        int buscar;
+        int numero;
+        int multiplo;
         if (ultimo) {
             ls = new ListaSimple();
             transformacion(vector);
@@ -32,13 +38,22 @@ public class ListaSimpleFinalMain {
             ls.imprimirlista();
             door = true;
             System.out.println("");
+        } else {
+            do {
+                System.out.print("Ingrese la cantidad de números que conformarán la"
+                        + " lista circular (debe ser mayor a 1): ");
+                numeros = Funcional.leer.nextInt();
+            } while (numeros < 1);
+            do {
+                System.out.print("Ingrese el múltiplo que conformará la lista: ");
+                multiplo = Funcional.leer.nextInt();
+            } while (multiplo < 0);
+            for (int i = 1; i < numeros + 1; i++) {
+                ls.insercionFinal(i * multiplo);
+            }
+            ls.imprimirlista();
+            door = true;
         }
-        System.out.print("- - - - - - - - - LISTA SIMPLE - - - - - - - - -");
-        int opcion = 0;
-        int numeros;
-        int buscar;
-        int numero;
-        int multiplo;
         do {
             System.out.println("\n1. Inserción al Final");
             System.out.println("2. Inserción después de ");
@@ -50,6 +65,7 @@ public class ListaSimpleFinalMain {
             opcion = Funcional.leer.nextInt();
             switch (opcion) {
                 case 1:
+                    ls = new ListaSimple();
                     do {
                         System.out.print("Ingrese la cantidad de números que conformarán la"
                                 + " lista circular (debe ser mayor a 1): ");

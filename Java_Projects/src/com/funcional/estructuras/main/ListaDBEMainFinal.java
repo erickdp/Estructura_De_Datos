@@ -24,6 +24,12 @@ public class ListaDBEMainFinal {
 
     final static void menuListaDME(int[] vector, boolean inicio) {
         boolean door = false;
+        System.out.println("- - - - - - - - - LISTA DOBLEMENTE ENLAZADA - - - - - - - - -");
+        int opcion = 0;
+        int numeros;
+        int buscar;
+        int numero;
+        int multiplo;
         if (inicio) {
             lc = new ListaDME();
             transformacion(vector);
@@ -32,13 +38,22 @@ public class ListaDBEMainFinal {
             lc.impresionLista();
             door = true;
             System.out.println("");
+        } else {
+            do {
+                System.out.print("Ingrese la cantidad de números que conformarán la"
+                        + " lista doblemente enlazada (debe ser mayor a 1): ");
+                numeros = Funcional.leer.nextInt();
+            } while (numeros < 1);
+            do {
+                System.out.print("Ingrese el múltiplo que conformará la lista: ");
+                multiplo = Funcional.leer.nextInt();
+            } while (multiplo < 0);
+            for (int i = 1; i < numeros + 1; i++) {
+                lc.insercionInicio(i * multiplo);
+            }
+            lc.impresionLista();
+            door = true;
         }
-        System.out.print("- - - - - - - - - LISTA DOBLEMENTE ENLAZADA - - - - - - - - -");
-        int opcion = 0;
-        int numeros;
-        int buscar;
-        int numero;
-        int multiplo;
         do {
             System.out.println("\n1. Inserción al Final");
             System.out.println("2. Transformación de Estructura");
@@ -46,6 +61,7 @@ public class ListaDBEMainFinal {
             opcion = Funcional.leer.nextInt();
             switch (opcion) {
                 case 1:
+                    lc = new ListaDME();
                     do {
                         System.out.print("Ingrese la cantidad de números que conformarán la"
                                 + " lista doblemente enlazada (debe ser mayor a 1): ");

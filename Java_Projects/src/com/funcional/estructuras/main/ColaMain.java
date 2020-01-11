@@ -24,6 +24,12 @@ public class ColaMain {
 
     final static void menuListaSimple(int[] vector, boolean inicio) {
         boolean door = false;
+        System.out.println("- - - - - - - - - COLA - - - - - - - - -");
+        int opcion = 0;
+        int numeros;
+        int buscar;
+        int numero;
+        int multiplo;
         if (inicio) {
             co = new Cola();
             transformacion(vector);
@@ -32,24 +38,33 @@ public class ColaMain {
             co.imprimir();
             System.out.println("");
             door = true;
+        } else {
+            do {
+                System.out.print("Ingrese la cantidad de números que conformarán la"
+                        + " lista circular (debe ser mayor a 1): ");
+                numeros = Funcional.leer.nextInt();
+            } while (numeros < 1);
+            do {
+                System.out.print("Ingrese el múltiplo que conformará la lista: ");
+                multiplo = Funcional.leer.nextInt();
+            } while (multiplo < 0);
+            for (int i = 1; i < numeros + 1; i++) {
+                co.insercion(i * multiplo);
+            }
+            co.imprimir();
+            door = true;
         }
-        System.out.print("- - - - - - - - - COLA - - - - - - - - -");
-        int opcion = 0;
-        int numeros;
-        int buscar;
-        int numero;
-        int multiplo;
         do {
             System.out.println("\n1. Inserción");
             System.out.println("2. Inserción después de ");
-            System.out.println("3. Inserción antes de ");
-            System.out.println("4. Modificar nodo");
-            System.out.println("5. Eliminar Nodo");
-            System.out.println("6. Transformación de Estructura");
-            System.out.println("7. Salir");
+            System.out.println("3. Modificar nodo");
+            System.out.println("4. Eliminar Nodo");
+            System.out.println("5. Transformación de Estructura");
+            System.out.println("6. Salir");
             opcion = Funcional.leer.nextInt();
             switch (opcion) {
                 case 1:
+                    co = new Cola();
                     do {
                         System.out.print("Ingrese la cantidad de números que conformarán la"
                                 + " lista circular (debe ser mayor a 1): ");
@@ -75,15 +90,6 @@ public class ColaMain {
                     co.imprimir();
                     break;
                 case 3:
-                    System.out.println("(Solo Número Enteros)");
-                    System.out.print("Ingrese el número a buscar: ");
-                    buscar = Funcional.leer.nextInt();
-                    System.out.print("Ingrese el nuevo número a insertar: ");
-                    numero = Funcional.leer.nextInt();
-                    co.insercionAntes(numero, buscar);
-                    co.imprimir();
-                    break;
-                case 4:
                     System.out.print("Ingrese el nodo a modificar: ");
                     buscar = Funcional.leer.nextInt();
                     System.out.print("Ingrese el nuevo número: ");
@@ -91,13 +97,13 @@ public class ColaMain {
                     co.modificarNodo(numero, buscar);
                     co.imprimir();
                     break;
-                case 5:
+                case 4:
                     System.out.print("Ingrese el nodo a eliminar: ");
                     numero = Funcional.leer.nextInt();
                     co.eliminarNodo(numero);
                     co.imprimir();
                     break;
-                case 6:
+                case 5:
                     int opcion2 = 0;
                     int opcion3 = 0;
                     if (door) {
@@ -178,13 +184,13 @@ public class ColaMain {
                         System.out.println("La Estructura está vacía, ingrese valores primero.");
                     }
                     break;
-                case 7:
+                case 6:
                     System.out.println("- - - Saliendo - - -");
                     break;
                 default:
                     System.out.println("Error al ingresar, intente de nuevo.");
             }
-        } while (opcion != 7);
+        } while (opcion != 6);
     }
 
 }
