@@ -17,8 +17,9 @@ public class ColaMain {
     private static Cola co = new Cola();
 
     private static void transformacion(int[] vector) {
-        for (int i : vector) {
-            co.insercion(i);
+        for (int i = 0; i < vector.length; i++) {
+            co.insercion(vector[i]);
+            vector[i] = 0;
         }
     }
 

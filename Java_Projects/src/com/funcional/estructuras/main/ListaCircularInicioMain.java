@@ -17,8 +17,9 @@ public class ListaCircularInicioMain {
     private static ListaCircular lc = new ListaCircular();
 
     private static void transformacion(int[] vector) {
-        for (int i : vector) {
-            lc.insercionInicio(i);
+        for (int i = 0; i < vector.length; i++) {
+            lc.insercionInicio(vector[i]);
+            vector[i] = 0;
         }
     }
 

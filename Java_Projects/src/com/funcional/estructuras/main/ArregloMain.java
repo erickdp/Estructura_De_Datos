@@ -71,6 +71,7 @@ public class ArregloMain {
                         multiplo = Funcional.leer.nextInt();
                     } while (multiplo < 0);
                     ar.numeros = new int[numeros];
+                    ar.encerar();
                     for (int i = 1; i < numeros + 1; i++) {
                         ar.insercion(i * multiplo);
                     }

@@ -12,7 +12,8 @@ package com.funcional.estructuras;
 public class Arreglo {
 
     public int[] numeros;
-    private int contador = 0;
+    private int contador = 0; //Contador que ayuda a que nuestro arreglo simule ser dinámico
+    //permitiendo aumentar o eliminar posiciones.
 
     public final void insercion(int numero) {
         numeros[contador] = numero;
@@ -25,13 +26,19 @@ public class Arreglo {
         for (int i = 0; i < numeros.length; i++) {
             if ((numeros[i] == buscar) || (bandera)) {
                 if (((i + 1) != numeros.length) && (numeros[i] != 0)) {
+                    /*
+                    Una vez encontrado el dato a eliminar nuestra bandera
+                    permitirá el pasó para que el algoritmo continue, 
+                    dando al dato del vector el siguiente para enviar
+                    los ceros al final
+                    */
                     numeros[i] = numeros[i + 1];
                 }
                 bandera = true;
             }
         }
         if (bandera) {
-            numeros[numeros.length - 1] = 0;
+            numeros[numeros.length - 1] = 0; //Practicamente solo se usará una vez
             contador--;
         } else {
             System.out.println("El número " + buscar + " no existe.");
@@ -43,7 +50,7 @@ public class Arreglo {
         boolean bandera = false;
         for (int i = 0; i < numeros.length; i++) {
             if (numeros[i] == buscar) {
-                agregarPosicion();
+                agregarPosicion(); //Métoo que permite aumentar el número de posiciones en el arrreglo
                 bandera = true;
                 posicion = i;
                 break;
@@ -96,6 +103,12 @@ public class Arreglo {
         }
     }
 
+    /**
+     * Este método ayuda a adicionar posiciones al vector
+     * creando un vector auxiliar con una posición +1 del actual
+     * vector y al final copiando la dirección de memoria
+     * al vector original
+     */
     private void agregarPosicion() {
         int[] aux = new int[numeros.length + 1];
         for (int i = 0; i < numeros.length; i++) {
@@ -115,6 +128,16 @@ public class Arreglo {
                 System.out.println();
                 co = 0;
             }
+        }
+    }
+    
+    /**
+     * Método que encera al vector una vez
+     * inicializado en main.
+     */
+    public final void encerar() {
+        for (int i = 0; i < numeros.length; i++) {
+            numeros[i] = 0;
         }
     }
 }

@@ -17,8 +17,9 @@ public class ListaSimpleInicioMain {
     private static ListaSimple ls = new ListaSimple();
 
     private static void transformacion(int[] vector) {
-        for (int i : vector) {
-            ls.insercionInicio(i);
+        for (int i = 0; i < vector.length; i++) {
+            ls.insercionInicio(vector[i]);
+            vector[i] = 0;
         }
     }
 

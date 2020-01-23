@@ -17,8 +17,9 @@ public class ListaDBEMain {
     private static ListaDME lc = new ListaDME();
 
     private static void transformacion(int[] vector) {
-        for (int i : vector) {
-            lc.insercionInicio(i);
+        for (int i = 0; i < vector.length; i++) {
+            lc.insercionInicio(vector[i]);
+            vector[i] = 0;
         }
     }
 

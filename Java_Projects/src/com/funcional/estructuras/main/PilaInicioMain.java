@@ -17,8 +17,9 @@ public class PilaInicioMain {
     private static Pila pi = new Pila();
 
     private static void transformacion(int[] vector) {
-        for (int i : vector) {
-            pi.insercion(i);
+        for (int i = 0; i < vector.length; i++) {
+            pi.insercion(vector[i]);
+            vector[i] = 0;
         }
     }
 

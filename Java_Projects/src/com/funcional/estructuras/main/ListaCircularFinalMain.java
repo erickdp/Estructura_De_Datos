@@ -11,9 +11,18 @@ public class ListaCircularFinalMain {
 
     private static ListaCircular lc = new ListaCircular();
 
+    /**
+     * A través de este método estatico, nos permite que
+     * mediante un vector como parámetro, el cuál contiene
+     * los datos de otra Estructura, la transformará en
+     * la nueva estructura deseada, dependiendo del tipo
+     * de inserción de cada una y encerando al vector.
+     * @param vector 
+     */
     final static void transformacion(int[] vector) {
-        for (int i : vector) {
-            lc.insercionFinal(i);
+        for (int i = 0; i < vector.length; i++) {
+            lc.insercionFinal(vector[i]);
+            vector[i] = 0;
         }
     }
 
@@ -25,6 +34,9 @@ public class ListaCircularFinalMain {
         int buscar;
         int numero;
         int multiplo;
+        //Este condicional tiene el propósito de determinar si la estructura
+        //está siendo transformada desde otra estructura o si se la utilizará por
+        //primera vez
         if (ultimo) {
             lc = new ListaCircular();
             transformacion(vector);
@@ -60,7 +72,9 @@ public class ListaCircularFinalMain {
             opcion = Funcional.leer.nextInt();
             switch (opcion) {
                 case 1:
-                    lc = new ListaCircular();
+                    lc = new ListaCircular(); //Se crea un nuevo espacio en memoria
+                    //por si el usuario quiere ingresar nuevos valores, luego de
+                    //transformar de una lista a otra.
                     do {
                         System.out.print("Ingrese la cantidad de números que conformarán la"
                                 + " lista circular (debe ser mayor a 1): ");
@@ -74,7 +88,8 @@ public class ListaCircularFinalMain {
                         lc.insercionFinal(i * multiplo);
                     }
                     lc.impresionLista();
-                    door = true;
+                    door = true; //Esta bandera permite el paso a la tranformación en otra lista
+                    //y que no se envíen datos vacíos.
                     break;
                 case 2:
                     System.out.println("(Solo Número Enteros)");
@@ -124,6 +139,11 @@ public class ListaCircularFinalMain {
                             System.out.print("Ingrese una opción a transformar: ");
                             opcion2 = Funcional.leer.nextInt();
                             switch (opcion2) {
+                                /*
+                                Para cada estructura se usa el método estático 
+                                de transformación y se envía los respectivos datos
+                                a través de un vector.
+                                */
                                 case 1:
                                     ArregloMain.menuArreglo(lc.vector(), true);
                                     break;

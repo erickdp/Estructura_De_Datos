@@ -35,9 +35,19 @@ public class MainPrincipal {
             int opcion3 = 0;
             switch (opcion) {
                 case 1:
+                    /*
+                    En este caso al método de tranformación se envía un null para el vector
+                    y un false para la bandera que permite el paso a la tranformación del vector,
+                    pues si inicia el programa desde este main es por que se va a utilizar
+                    la estructuras por primera vez.
+                    */
                     ArregloMain.menuArreglo(null, false);
                     break;
                 case 2:
+                    /*
+                    Dependiendo la estructura se tiene un main para una inserción
+                    inicial o final de datos.
+                    */
                     System.out.println("1. Inserción Inicio");
                     System.out.println("2. Inserción Final");
                     System.out.print("Digite: ");

@@ -136,10 +136,20 @@ public class Cola {
         }
     }
 
-    public final int length() {
+    private int length() {
         return contador;
     }
 
+    /**
+     * Este método es esencial para la transformnación a otra
+     * estructura.
+     * 1. Mediante la variable contador obtendremos la cantidad de 
+     * datos presentes en la estructura.
+     * 2. Se inicializa el vector que guardará los datos de la lista actual
+     * para siguiente eliminarlos de la estructura presente.
+     * 3. Se retorna el vector con los datos y la estructura queda vacía.
+     * @return 
+     */
     public final int[] vector() {
         int vector[] = new int[length()];
         Nodo temp = cola;

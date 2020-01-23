@@ -17,8 +17,9 @@ public class ListaSimpleFinalMain {
     private static ListaSimple ls = new ListaSimple();
 
     private static void transformacion(int[] vector) {
-        for (int i : vector) {
-            ls.insercionFinal(i);
+        for (int i = 0; i < vector.length; i++) {
+            ls.insercionFinal(vector[i]);
+            vector[i] = 0;
         }
     }
 
