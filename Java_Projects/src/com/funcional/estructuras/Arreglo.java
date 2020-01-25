@@ -1,8 +1,4 @@
-/*;
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package com.funcional.estructuras;
 
 /**
@@ -27,10 +23,12 @@ public class Arreglo {
             if ((numeros[i] == buscar) || (bandera)) {
                 if (((i + 1) != numeros.length) && (numeros[i] != 0)) {
                     /*
-                    Una vez encontrado el dato a eliminar nuestra bandera
+                    1. Una vez encontrado el dato a eliminar nuestra bandera
                     permitirá el pasó para que el algoritmo continue, 
                     dando al dato del vector el siguiente para enviar
                     los ceros al final
+                    2. El numeros[i[ != 0 para recorrer hasta el último cero
+                    y no hacer hasta la último posición
                     */
                     numeros[i] = numeros[i + 1];
                 }
@@ -58,9 +56,14 @@ public class Arreglo {
         }
         if (bandera) {
             for (int i = numeros.length - 1; i > posicion; i--) {
-                numeros[i] = numeros[i - 1];
+                numeros[i] = numeros[i - 1]; //Se recorren los números de la iz a la derecha
             }
             numeros[posicion + 1] = numero;
+            /*
+            Ej:
+            El vector 5 4 3 3 2 1 
+            será      5 4 3 n 2 1
+            */
         } else {
             System.out.println("El número " + buscar + " no existe.");
         }
@@ -112,7 +115,11 @@ public class Arreglo {
     private void agregarPosicion() {
         int[] aux = new int[numeros.length + 1];
         for (int i = 0; i < numeros.length; i++) {
+            aux[i] = 0;
+        }
+        for (int i = 0; i < numeros.length; i++) {
             aux[i] = numeros[i];
+            numeros[i] = 0;
         }
         aux[aux.length - 1] = 0;
         numeros = aux;

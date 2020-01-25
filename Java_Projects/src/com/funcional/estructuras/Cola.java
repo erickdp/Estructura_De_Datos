@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.funcional.estructuras;
 
 /**
@@ -30,7 +25,7 @@ public class Cola {
         Nodo colat = null;
         Nodo ultimot = null;
         Nodo temp = cola;
-        while ((temp.numero != buscar) && (temp.siguiente != null)) {
+        while ((temp != null) && (temp.numero != buscar)) {
             Nodo temp1 = new Nodo(temp.numero);
             if (colat == null) {
                 colat = temp1;
@@ -41,25 +36,17 @@ public class Cola {
             cola = cola.siguiente;
             temp = temp.siguiente;
         }
-        if (temp.numero == buscar) {
-            Nodo temp1 = new Nodo(temp.numero);
-            if (colat == null) {
-                colat = temp1;
-            } else {
-                ultimot.siguiente = temp1;
+        if (temp != null) {
+            Nodo temp1 = new Nodo(numero);
+            temp1.siguiente = temp.siguiente;
+            temp.siguiente = temp1;
+            if (colat != null) {
+                ultimot.siguiente = temp;
+                cola = colat;
             }
-            ultimot = temp1;
-            temp = temp.siguiente;
-            cola = cola.siguiente;
-            Nodo temp2 = new Nodo(numero);
-            ultimot.siguiente = temp2;
-            ultimot = temp2;
-            ultimot.siguiente = temp;
-            cola = colat;
             contador++;
         } else {
             System.out.println("El número " + buscar + " no existe.");
-            ultimot.siguiente = temp;
             cola = colat;
         }
     }
@@ -68,7 +55,7 @@ public class Cola {
         Nodo temp = cola;
         Nodo colat = null;
         Nodo ultimot = null;
-        while ((temp.numero != numero) && (temp.siguiente != null)) {
+        while ((temp != null) && (temp.numero != numero)) {
             Nodo temp1 = new Nodo(temp.numero);
             if (colat == null) {
                 colat = temp1;
@@ -79,7 +66,7 @@ public class Cola {
             temp = temp.siguiente;
             cola = cola.siguiente;
         }
-        if (temp.numero == numero) {
+        if (temp != null) {
             temp = temp.siguiente;
             cola = cola.siguiente;
             if (colat != null) {
@@ -89,7 +76,6 @@ public class Cola {
             contador--;
         } else {
             System.out.println("El número " + numero + " no existe.");
-            ultimot.siguiente = temp;
             cola = colat;
         }
     }
@@ -98,7 +84,7 @@ public class Cola {
         Nodo colat = null;
         Nodo ultimot = null;
         Nodo temp = cola;
-        while ((temp.numero != buscar) && (temp.siguiente != null)) {
+        while ((temp != null) && (temp.numero != buscar)) {
             Nodo temp1 = new Nodo(temp.numero);
             if (colat == null) {
                 colat = temp1;
@@ -109,17 +95,15 @@ public class Cola {
             temp = temp.siguiente;
             cola = cola.siguiente;
         }
-        if (temp.numero == buscar) {
+        if (temp != null) {
             temp.numero = numero;
             if (colat != null) {
                 ultimot.siguiente = temp;
-                cola = colat;
             }
         } else {
             System.out.println("El número " + buscar + " no existe.");
-            ultimot.siguiente = temp;
-            cola = colat;
         }
+        cola = colat;
     }
 
     public final void imprimir() {
@@ -141,14 +125,13 @@ public class Cola {
     }
 
     /**
-     * Este método es esencial para la transformnación a otra
-     * estructura.
-     * 1. Mediante la variable contador obtendremos la cantidad de 
-     * datos presentes en la estructura.
-     * 2. Se inicializa el vector que guardará los datos de la lista actual
-     * para siguiente eliminarlos de la estructura presente.
-     * 3. Se retorna el vector con los datos y la estructura queda vacía.
-     * @return 
+     * Este método es esencial para la transformnación a otra estructura. 1.
+     * Mediante la variable contador obtendremos la cantidad de datos presentes
+     * en la estructura. 2. Se inicializa el vector que guardará los datos de la
+     * lista actual para siguiente eliminarlos de la estructura presente. 3. Se
+     * retorna el vector con los datos y la estructura queda vacía.
+     *
+     * @return
      */
     public final int[] vector() {
         int vector[] = new int[length()];
@@ -161,5 +144,4 @@ public class Cola {
         System.out.println("La Estructura Cola está vacía.");
         return vector;
     }
-
 }

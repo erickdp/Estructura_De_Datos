@@ -24,22 +24,17 @@ public class Pila {
     public final void insercionDespues(int numero, int buscar) {
         Nodo temp = pila;
         Nodo pilat = null;
-        while ((temp.numero != buscar) && (temp.siguiente != null)) {
+        while ((temp != null) && (temp.numero != buscar)) {
             Nodo temp1 = new Nodo(temp.numero);
             temp1.siguiente = pilat;
             pilat = temp1;
             temp = temp.siguiente;
             pila = pila.siguiente;
         }
-        if (temp.numero == buscar) {
-            Nodo temp1 = new Nodo(temp.numero);
-            temp1.siguiente = pilat;
-            pilat = temp1;
-            temp = temp.siguiente;
-            pila = pila.siguiente;
-            Nodo temp2 = new Nodo(numero);
-            temp2.siguiente = temp;
-            temp = temp2;
+        if (temp != null) {
+            Nodo temp1 = new Nodo(numero);
+            temp1.siguiente = temp.siguiente;
+            temp.siguiente = temp1;
             contador++;
         } else {
             System.out.println("El número " + buscar + " no exsite.");
