@@ -42,11 +42,11 @@ public class PilaInicioMain {
         } else {
             do {
                 System.out.print("Ingrese la cantidad de números que conformarán la"
-                        + " lista circular (debe ser mayor a 1): ");
+                        + " estructura (debe ser mayor a 1): ");
                 numeros = Funcional.leer.nextInt();
             } while (numeros < 1);
             do {
-                System.out.print("Ingrese el múltiplo que conformará la lista: ");
+                System.out.print("Ingrese el múltiplo que conformará la estructura: ");
                 multiplo = Funcional.leer.nextInt();
             } while (multiplo < 0);
             for (int i = 1; i < numeros + 1; i++) {

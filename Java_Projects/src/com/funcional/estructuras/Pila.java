@@ -32,6 +32,8 @@ public class Pila {
             pila = pila.siguiente;
         }
         if (temp != null) {
+            //La lista original solo se puede modificar hacia la derecha 
+            //Para izq se debe de copiar la dirección de memoria a la original
             Nodo temp1 = new Nodo(numero);
             temp1.siguiente = temp.siguiente;
             temp.siguiente = temp1;
@@ -51,14 +53,14 @@ public class Pila {
     public final void eliminarNodo(int numero) {
         Nodo temp = pila;
         Nodo pilat = null;
-        while ((temp.numero != numero) && (temp.siguiente != null)) {
+        while ((temp != null) && (temp.numero != numero)) {
             Nodo temp1 = new Nodo(temp.numero);
             temp1.siguiente = pilat;
             pilat = temp1;
             temp = temp.siguiente;
             pila = pila.siguiente;
         }
-        if (temp.numero == numero) {
+        if (temp != null) {
             pila = pila.siguiente;
             temp = temp.siguiente;
             contador--;

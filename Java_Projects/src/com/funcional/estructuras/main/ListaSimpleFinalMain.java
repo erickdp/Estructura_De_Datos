@@ -42,7 +42,7 @@ public class ListaSimpleFinalMain {
         } else {
             do {
                 System.out.print("Ingrese la cantidad de números que conformarán la"
-                        + " lista circular (debe ser mayor a 1): ");
+                        + " lista (debe ser mayor a 1): ");
                 numeros = Funcional.leer.nextInt();
             } while (numeros < 1);
             do {
